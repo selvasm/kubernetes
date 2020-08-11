@@ -4,15 +4,16 @@ metadata:
   name: random-number
 spec:
   containers:
-    - image: alpine
-      name: alpine
-      command: ["/bin/sh","-c"]
-      args: ["shuf -i 0-120 -n 1 >> /opt/number.out"]
-      volumeMounts:
-      - mountPath: /opt
-        name: dataVolume
-    volume:
-    - name: dataVolume
-      hostPath:
-        path: /data
-        type: Directory
+  - image: alpine
+    name: alpine
+    command: ["/bin/sh","-c"]
+    args: ["shuf -i 0-120 -n 1 >> /opt/number.out"]
+    volumeMounts:
+    - mountPath: /opt
+      name: dataVolume  
+  
+  volumes:
+   - name: dataVolume
+     hostPath:
+      path: /data
+      type: Directory
